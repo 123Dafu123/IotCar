@@ -1,0 +1,30 @@
+from building import *
+
+cwd     = GetCurrentDir()
+
+src = Split('''
+main.c
+''')
+
+src += ['id.h']
+
+src += ['qr.h']
+
+src += ['qr_thread.c']
+
+src += ['qr_thread.h']
+
+src += ['http_thread.c']
+
+src += ['http_thread.h']
+
+src += ['wifi_thread_my.c']
+
+src += ['wifi_thread_my.h']
+
+
+CPPPATH = [str(Dir('#')), cwd]
+
+group = DefineGroup('Applications', src, depend = [''], CPPPATH = CPPPATH)
+
+Return('group')

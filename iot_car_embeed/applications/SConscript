@@ -22,11 +22,6 @@ src += ['wifi_thread_my.c']
 
 src += ['wifi_thread_my.h']
 
-src += ['rebind_interrupt.c']
-
-src += ['rebind_interrupt.h']
-
-
 CPPPATH = [str(Dir('#')), cwd]
 
 group = DefineGroup('Applications', src, depend = [''], CPPPATH = CPPPATH)

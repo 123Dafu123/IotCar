@@ -7,6 +7,5 @@ int main(void)
     wifi_thread_init();
     qr_thread_init();
     http_thread_init();
-
     return 0;
 }

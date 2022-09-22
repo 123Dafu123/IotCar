@@ -28,6 +28,7 @@ static void key1_hrq(void *param)
     {
         lcd_clear(WHITE);
         lcd_show_string(0, 100, 32, "car is running");
+        sta=0;
     }
 }
 

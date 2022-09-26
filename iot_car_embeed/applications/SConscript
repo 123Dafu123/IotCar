@@ -8,6 +8,8 @@ main.c
 
 src += ['id.h']
 
+src += ['qr.c']
+
 src += ['qr.h']
 
 src += ['qr_thread.c']

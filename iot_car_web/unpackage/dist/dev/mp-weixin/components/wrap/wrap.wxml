@@ -1,1 +1,0 @@
-<view class="wrap"><image class="logo" src="/static/wuqiong.png"></image><text class="title">{{a}}</text></view>

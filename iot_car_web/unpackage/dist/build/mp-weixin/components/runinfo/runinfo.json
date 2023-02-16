@@ -1,6 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "best-gauge": "../best-gauge/best-gauge"
-  }
-}

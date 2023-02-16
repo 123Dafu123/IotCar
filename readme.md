@@ -10,6 +10,6 @@ IotCar_Embeed为嵌入式小车源码
 
 IotCar_Server为后台服务端源码
 
-IotCar_Web为前端手机app源码
+IotCar_APP为手机app源码
 
 更新信息：2.0.0版本支持了OTA升级功能，优化手机APP登录方式，优化小车控制，更新了设计报告

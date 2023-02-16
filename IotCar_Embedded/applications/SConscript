@@ -1,0 +1,49 @@
+from building import *
+
+cwd     = GetCurrentDir()
+
+src = Split('''
+main.c
+''')
+
+src += ['recourses/app_version.h']
+
+src += ['recourses/id.h']
+
+src += ['recourses/qr.c']
+
+src += ['recourses/qr.h']
+
+src += ['threads/qr_thread.c']
+
+src += ['threads/qr_thread.h']
+
+src += ['threads/http_thread.c']
+
+src += ['threads/http_thread.h']
+
+src += ['threads/wifi_thread_my.c']
+
+src += ['threads/wifi_thread_my.h']
+
+src += ['threads/rebind_thread.c']
+
+src += ['threads/rebind_thread.h']
+
+src += ['threads/ota_thread.c']
+
+src += ['threads/ota_thread.h']
+
+src += ['sems/sems_my.h']
+
+src += ['sems/sems_my.c']
+
+src += ['mutexs/mutexs_my.h']
+
+src += ['mutexs/mutexs_my.c']
+
+CPPPATH = [str(Dir('#')), cwd]
+
+group = DefineGroup('Applications', src, depend = [''], CPPPATH = CPPPATH)
+
+Return('group')

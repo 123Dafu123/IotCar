@@ -1,0 +1,1 @@
+.wrap{display:flex;flex-direction:column;align-items:center;justify-content:center}.logo{color:#aa488f;font-size:100px;line-height:100px;text-align:center;height:100px;width:100px;margin:0 auto}.title{font-size:24px;color:#fff}

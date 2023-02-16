@@ -1,0 +1,1 @@
+<view class="gauge-box" style="{{'background-color:' + g}}"><block wx:if="{{r0}}"><canvas canvas-id="{{a}}" style="{{'width:' + b + ';' + ('height:' + c)}}"></canvas></block><view wx:if="{{d}}" class="{{['gauge-btn', f && 'gauge-btn-active']}}">{{e}}</view></view>

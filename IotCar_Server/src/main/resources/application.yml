@@ -1,0 +1,9 @@
+server:
+  port: 8088
+
+spring:
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;DatabaseName=SmartCar
+    username: sa
+    password: wanghaozhe@@@1
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver

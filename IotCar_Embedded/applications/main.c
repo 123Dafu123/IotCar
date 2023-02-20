@@ -35,8 +35,6 @@ int main(void)
     easyflash_init();
     MG513_init();
     pid_speed_control_init();
-    pid_set_left_speed(0);
-    pid_set_left_speed(0);
     lcd_clear(WHITE);
     lcd_show_string(0, 80, 32, "Car ID %s",this_id);
     lcd_show_string(0, 120, 32, "VERSION %s",APP_VERSION);

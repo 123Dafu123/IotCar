@@ -3,6 +3,7 @@
 #define APPLICATIONS_THREADS_HTTP_THREAD_H_
 
 #include <rtthread.h>
+#include <stdio.h>
 
 #include <recourses/id.h>
 #include <mutexs/mutexs_my.h>

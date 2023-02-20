@@ -1,14 +1,14 @@
 <template>
 	<view class="content">
-		<speedControler name="left" @speed="(speed)=>{setSpeed(`left`,speed)}" @brake="()=>{brake(`left`)}"
-			@disBrake="()=>{disBrake(`left`)}">
+		<speedControler name="left" @acc-speed="()=>{setSpeed(`acc`)}" @dec-speed="()=>{setSpeed(`dec`)}"
+			@brake="()=>{brake(`speed`)}" @disBrake="()=>{disBrake(`speed`)}">
 		</speedControler>
 		<runinfo :isBrake="isBrake" :isConnected="isConnected" :leftSpeedPanel="leftSpeedPanel"
 			:rightSpeedPanel="rightSpeedPanel">
 		</runinfo>
-		<speedControler name="right " @speed="(speed)=>{setSpeed(`right`,speed)}" @brake="()=>{brake(`right`)}"
-			@disBrake="()=>{disBrake(`right`)}">
-		</speedControler>
+		<turnControler name="right" @acc-turn="()=>{setTurn(`acc`)}" @dec-turn="()=>{setTurn(`dec`)}"
+			@brake=" ()=>{brake(`turn`)}" @disBrake="()=>{disBrake(`turn`)}">
+		</turnControler>
 	</view>
 	<grea class=" bottom" @changeGrea="changeGrea"></grea>
 	<bind-car class="bind" @bind="bindHandler" :bindId="bindId" :isBind="isBind"></bind-car>
@@ -24,8 +24,8 @@
 				isBind: false,
 				isBrake: false,
 				isConnected: false,
-				leftSpeed: 0,
-				rightSpeed: 0,
+				xSpeed: 0,
+				zSpeed: 0,
 				grea: "P",
 				leftSpeedPanel: {
 					id: 'left',
@@ -100,15 +100,38 @@
 		methods: {
 			changeGrea(grea) {
 				this.grea = grea
-				this.leftSpeed = 0
-				this.rightSpeed = 0
+				this.xSpeed = 0
+				this.zSpeed = 0
 			},
-			setSpeed(direct, speed) {
-				if (direct == 'left') this.leftSpeed = speed
-				if (direct == 'right') this.rightSpeed = speed
+			setSpeed(direct) {
+				if (direct == 'acc') {
+					if (this.xSpeed < 20)
+						this.xSpeed++;
+				}
+				if (direct == 'dec') {
+					if (this.xSpeed > 0)
+						this.xSpeed--;
+				}
+			},
+			setTurn(direct) {
+				if (direct == 'acc') {
+					if (this.zSpeed < 20)
+						this.zSpeed++;
+				}
+				if (direct == 'dec') {
+					if (this.zSpeed > -20)
+						this.zSpeed--;
+				}
 			},
 			brake(direct) {
 				this.isBrake = true
+				if (direct == 'speed') {
+					this.xSpeed = 0
+					this.zSpeed = 0
+				} else if (direct == 'turn') {
+					this.zSpeed = 0
+				}
+
 			},
 			disBrake(direct) {
 				this.isBrake = false
@@ -181,7 +204,7 @@
 					})
 
 					uni.request({
-						url: `http://192.168.43.84:8088/appSta/api/setSta?leftS=${this.leftSpeed}&rightS=${this.rightSpeed}&grea=${this.grea}&id=${this.id}`,
+						url: `http://192.168.43.84:8088/appSta/api/setSta?leftS=${this.xSpeed}&rightS=${this.zSpeed}&grea=${this.grea}&id=${this.id}`,
 						method: "GET",
 					})
 				}, 10

@@ -164,6 +164,55 @@
 }
 
 
+.turnControler[data-v-55497cc0] {
+		height: 200px;
+		padding: 10px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		align-items: center;
+}
+.acc[data-v-55497cc0] {
+		width: 40px;
+		height: 40px;
+		margin: 10px;
+		border: none;
+		background-image: url("../../static/up.png");
+		background-position: center;
+		background-size: 100%;
+		background-color: white;
+		transform: rotateZ(90deg);
+}
+.acc[data-v-55497cc0]:active {
+		background-image: url("../../static/up-a.png");
+}
+.dec[data-v-55497cc0] {
+		width: 40px;
+		height: 40px;
+		margin: 10px;
+		border: none;
+		background-image: url("../../static/down.png");
+		background-position: center;
+		background-size: 100%;
+		background-color: white;
+		transform: rotateZ(90deg);
+}
+.dec[data-v-55497cc0]:active {
+		background-image: url("../../static/down-a.png");
+}
+.stop[data-v-55497cc0] {
+		margin: 10px;
+		width: 50px;
+		height: 50px;
+		background-image: url("../../static/stop-car.png");
+		background-position: center;
+		background-size: 100%;
+}
+.stop[data-v-55497cc0]:active {
+		background-image: url("../../static/stop-car-a.png");
+}
+
+
 .geraView[data-v-5a7e7ae4] {
 		width: 200px;
 		display: flex;

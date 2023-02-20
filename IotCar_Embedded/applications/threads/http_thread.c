@@ -10,33 +10,29 @@
 
 static void sta_prase(char *root)
 {
-    int left=0;
-    int right=0;
+    int velocity_x=0;//x轴速度
+    int velocity_z=0;//z轴旋转速度
     char grea=0;
 
-    sscanf(root,"{\"leftSpeed\":%d,\"rightSpeed\":%d,\"grea\":\"%c\"}",&left,&right,&grea);
+    sscanf(root,"{\"leftSpeed\":%d,\"rightSpeed\":%d,\"grea\":\"%c\"}",&velocity_x,&velocity_z,&grea);
 
     if(grea=='P')
     {
-        pid_set_left_speed(0);
-        pid_set_right_speed(0);
-        MG513_brake();
+        pid_set(0, 0);
+        pid_speed_brake();
     }
     else if(grea=='N')
     {
-        pid_set_left_speed(0);
-        pid_set_right_speed(0);
-        MG513_free();
+        pid_set(0, 0);
+        pid_speed_free();
     }
     else if(grea=='R')
     {
-        pid_set_left_speed(-1*left);
-        pid_set_right_speed(-1*right);
+        pid_set(-1*velocity_x, velocity_z);
     }
     else if(grea=='D')
     {
-        pid_set_left_speed(left);
-        pid_set_right_speed(right);
+        pid_set(velocity_x,velocity_z);
     }
 }
 

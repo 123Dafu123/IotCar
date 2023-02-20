@@ -9,11 +9,9 @@
  */
 #include <MG513/mg513.h>
 
-struct rt_device_pwm *pwm4;
+struct rt_device_pwm *pwm;
 int Code_left=0;
 int Code_right=0;
-int speed_left=0;
-int speed_right=0;
 
 static void MG513_left_encode_irq_handler(void *argument)
 {
@@ -22,12 +20,10 @@ static void MG513_left_encode_irq_handler(void *argument)
         if(rt_pin_read(left_encode_B)==PIN_LOW)
         {
             Code_left--;
-            speed_left--;
         }
         else
         {
             Code_left++;
-            speed_left++;
         }
     }
     else
@@ -35,12 +31,10 @@ static void MG513_left_encode_irq_handler(void *argument)
         if(rt_pin_read(left_encode_B)==PIN_LOW)
         {
             Code_left++;
-            speed_left++;
         }
         else
         {
             Code_left--;
-            speed_left--;
         }
     }
 }
@@ -52,12 +46,10 @@ static void MG513_right_encode_irq_handler(void *argument)
         if(rt_pin_read(right_encode_B)==PIN_LOW)
         {
             Code_right++;
-            speed_right++;
         }
         else
         {
             Code_right--;
-            speed_right--;
         }
     }
     else
@@ -65,12 +57,10 @@ static void MG513_right_encode_irq_handler(void *argument)
         if(rt_pin_read(right_encode_B)==PIN_LOW)
         {
             Code_right--;
-            speed_right--;
         }
         else
         {
             Code_right++;
-            speed_right++;
         }
     }
 }
@@ -92,11 +82,11 @@ void MG513_init()
     rt_pin_attach_irq(right_encode_A, PIN_IRQ_MODE_RISING_FALLING, MG513_right_encode_irq_handler, RT_NULL);
     rt_pin_irq_enable(right_encode_A, PIN_IRQ_ENABLE);
 
-    pwm4=(struct rt_device_pwm *)rt_device_find(pwm_name);
-    rt_pwm_set(pwm4, left_pwm_channel, pwm_period, 0);
-    rt_pwm_set(pwm4, right_pwm_channel, pwm_period, 0);
-    rt_pwm_enable(pwm4, left_pwm_channel);
-    rt_pwm_enable(pwm4, right_pwm_channel);
+    pwm=(struct rt_device_pwm *)rt_device_find(pwm_name);
+    rt_pwm_set(pwm, left_pwm_channel, pwm_period, 0);
+    rt_pwm_set(pwm, right_pwm_channel, pwm_period, 0);
+    rt_pwm_enable(pwm, left_pwm_channel);
+    rt_pwm_enable(pwm, right_pwm_channel);
 
     rt_pin_write(left_in1, PIN_LOW);
     rt_pin_write(left_in2, PIN_LOW);
@@ -111,14 +101,14 @@ void MG513_left_set_pwm(rt_int32_t speed)
         if(speed>100000)speed=100000;
         rt_pin_write(left_in1, PIN_HIGH);
         rt_pin_write(left_in2, PIN_LOW);
-        rt_pwm_set(pwm4, left_pwm_channel, pwm_period,speed);
+        rt_pwm_set(pwm, left_pwm_channel, pwm_period,speed);
     }
     else
     {
         if(speed<-100000)speed=-100000;
         rt_pin_write(left_in1, PIN_LOW);
         rt_pin_write(left_in2, PIN_HIGH);
-        rt_pwm_set(pwm4, left_pwm_channel, pwm_period, -1*speed);
+        rt_pwm_set(pwm, left_pwm_channel, pwm_period, -1*speed);
     }
 }
 
@@ -129,14 +119,14 @@ void MG513_right_set_pwm(rt_int32_t speed)
         if(speed>100000)speed=100000;
         rt_pin_write(right_in1, PIN_HIGH);
         rt_pin_write(right_in2, PIN_LOW);
-        rt_pwm_set(pwm4, right_pwm_channel, pwm_period,speed);
+        rt_pwm_set(pwm, right_pwm_channel, pwm_period,speed);
     }
     else
     {
         if(speed<-100000)speed=-100000;
         rt_pin_write(right_in1, PIN_LOW);
         rt_pin_write(right_in2, PIN_HIGH);
-        rt_pwm_set(pwm4,right_pwm_channel, pwm_period, -1*speed);
+        rt_pwm_set(pwm,right_pwm_channel, pwm_period, -1*speed);
     }
 }
 
@@ -146,8 +136,8 @@ void MG513_brake()
     rt_pin_write(left_in2, PIN_HIGH);
     rt_pin_write(right_in1, PIN_HIGH);
     rt_pin_write(right_in2, PIN_HIGH);
-    rt_pwm_set(pwm4, left_pwm_channel, pwm_period,0);
-    rt_pwm_set(pwm4, right_pwm_channel, pwm_period,0);
+    rt_pwm_set(pwm, left_pwm_channel, pwm_period,0);
+    rt_pwm_set(pwm, right_pwm_channel, pwm_period,0);
 }
 
 void MG513_free(){
@@ -155,8 +145,8 @@ void MG513_free(){
     rt_pin_write(left_in2, PIN_LOW);
     rt_pin_write(right_in1, PIN_LOW);
     rt_pin_write(right_in2, PIN_LOW);
-    rt_pwm_set(pwm4, left_pwm_channel, pwm_period,0);
-    rt_pwm_set(pwm4, right_pwm_channel, pwm_period,0);
+    rt_pwm_set(pwm, left_pwm_channel, pwm_period,0);
+    rt_pwm_set(pwm, right_pwm_channel, pwm_period,0);
 }
 
 int MG513_get_left_code()

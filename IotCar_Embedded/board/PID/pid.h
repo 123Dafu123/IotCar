@@ -15,11 +15,15 @@
 #include <board.h>
 #include <MG513/mg513.h>
 
+#define PWM_K          13.88f
+#define LEFT_P         32
+#define LEFT_I         32
+#define RIGHT_P        32
+#define RIGHT_I        32
+
 void pid_speed_control_init();
 
-void pid_set_left_speed(int target_speed);
-
-void pid_set_right_speed(int target_speed);
+void pid_set(int velocity, int turn);
 
 void pid_speed_brake();
 

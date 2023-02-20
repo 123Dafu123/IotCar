@@ -9,20 +9,15 @@
 <script>
 	export default {
 		data() {
-			return {
-				speed: 0
-			};
+			return {};
 		},
 		methods: {
 			acc(e) {
-				if (this.speed < 20) this.speed++
-				this.$emit('speed', this.speed)
+				this.$emit('acc-speed')
 				uni.vibrateShort()
 			},
 			brake(e) {
 				this.$emit('brake')
-				this.speed = 0
-				this.$emit('speed', this.speed)
 				uni.vibrateShort()
 			},
 			disBrake(e) {
@@ -30,8 +25,7 @@
 				uni.vibrateShort()
 			},
 			dec(e) {
-				if (this.speed > 0) this.speed--
-				this.$emit('speed', this.speed)
+				this.$emit('dec-speed')
 				uni.vibrateShort()
 			}
 		}

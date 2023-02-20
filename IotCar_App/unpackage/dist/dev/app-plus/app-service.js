@@ -54,7 +54,7 @@ if (uni.restoreGlobal) {
     }
     return target;
   };
-  const _sfc_main$9 = {
+  const _sfc_main$a = {
     data() {
       return {
         log: true,
@@ -85,7 +85,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$a(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "log-reg" }, [
       vue.createElementVNode("view", { class: "log-reg-box" }, [
         vue.createElementVNode("text", { class: "title" }, "\u767B\u5F55"),
@@ -152,11 +152,11 @@ if (uni.restoreGlobal) {
       ], 2)
     ]);
   }
-  var __easycom_0$2 = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$9], ["__scopeId", "data-v-281ea71c"], ["__file", "D:/project/SmartCar/SmartCar_App/components/log-reg/log-reg.vue"]]);
+  var __easycom_0$2 = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["render", _sfc_render$a], ["__scopeId", "data-v-281ea71c"], ["__file", "D:/project/SmartCar/SmartCar_App/components/log-reg/log-reg.vue"]]);
   function resolveEasycom(component, easycom) {
     return shared.isString(component) ? easycom : component;
   }
-  const _sfc_main$8 = {
+  const _sfc_main$9 = {
     data() {
       return {};
     },
@@ -221,7 +221,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$9(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_log_reg = resolveEasycom(vue.resolveDynamicComponent("log-reg"), __easycom_0$2);
     return vue.openBlock(), vue.createElementBlock("view", null, [
       vue.createVNode(_component_log_reg, {
@@ -231,24 +231,18 @@ if (uni.restoreGlobal) {
       }, null, 8, ["onLog", "onReg"])
     ]);
   }
-  var PagesLogLog = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$8], ["__scopeId", "data-v-7e685510"], ["__file", "D:/project/SmartCar/SmartCar_App/pages/log/log.vue"]]);
-  const _sfc_main$7 = {
+  var PagesLogLog = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["render", _sfc_render$9], ["__scopeId", "data-v-7e685510"], ["__file", "D:/project/SmartCar/SmartCar_App/pages/log/log.vue"]]);
+  const _sfc_main$8 = {
     data() {
-      return {
-        speed: 0
-      };
+      return {};
     },
     methods: {
       acc(e) {
-        if (this.speed < 20)
-          this.speed++;
-        this.$emit("speed", this.speed);
+        this.$emit("acc-speed");
         uni.vibrateShort();
       },
       brake(e) {
         this.$emit("brake");
-        this.speed = 0;
-        this.$emit("speed", this.speed);
         uni.vibrateShort();
       },
       disBrake(e) {
@@ -256,14 +250,12 @@ if (uni.restoreGlobal) {
         uni.vibrateShort();
       },
       dec(e) {
-        if (this.speed > 0)
-          this.speed--;
-        this.$emit("speed", this.speed);
+        this.$emit("dec-speed");
         uni.vibrateShort();
       }
     }
   };
-  function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$8(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "speedControler" }, [
       vue.createElementVNode("view", {
         class: "acc",
@@ -280,7 +272,7 @@ if (uni.restoreGlobal) {
       }, null, 32)
     ]);
   }
-  var __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$7], ["__scopeId", "data-v-309b4e38"], ["__file", "D:/project/SmartCar/SmartCar_App/components/speedControler/speedControler.vue"]]);
+  var __easycom_0$1 = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["render", _sfc_render$8], ["__scopeId", "data-v-309b4e38"], ["__file", "D:/project/SmartCar/SmartCar_App/components/speedControler/speedControler.vue"]]);
   const mainDefault = {
     bgColor: "rgba(255,255,255,1)",
     startAngle: 0.75,
@@ -337,7 +329,7 @@ if (uni.restoreGlobal) {
     subHeight: 1,
     padding: uni.upx2px(25)
   };
-  const _sfc_main$6 = {
+  const _sfc_main$7 = {
     data: function() {
       return {
         gaugeOption: {}
@@ -536,7 +528,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$7(_ctx, _cache, $props, $setup, $data, $options) {
     return vue.openBlock(), vue.createElementBlock("view", {
       class: "gauge-box",
       style: vue.normalizeStyle({ "background-color": $props.bgColor })
@@ -551,9 +543,9 @@ if (uni.restoreGlobal) {
       }, vue.toDisplayString($options._dStatus ? "\u5728\u7EBF" : "\u79BB\u7EBF"), 3)) : vue.createCommentVNode("v-if", true)
     ], 4);
   }
-  var __easycom_0 = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["render", _sfc_render$6], ["__scopeId", "data-v-0b57f1c4"], ["__file", "D:/project/SmartCar/SmartCar_App/components/best-gauge/best-gauge.vue"]]);
+  var __easycom_0 = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["render", _sfc_render$7], ["__scopeId", "data-v-0b57f1c4"], ["__file", "D:/project/SmartCar/SmartCar_App/components/best-gauge/best-gauge.vue"]]);
   var _imports_0 = "/static/ini.png";
-  const _sfc_main$5 = {
+  const _sfc_main$6 = {
     data() {
       return {};
     },
@@ -576,7 +568,7 @@ if (uni.restoreGlobal) {
       }
     }
   };
-  function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
+  function _sfc_render$6(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_best_gauge = resolveEasycom(vue.resolveDynamicComponent("best-gauge"), __easycom_0);
     return vue.openBlock(), vue.createElementBlock("view", { class: "runinfo" }, [
       vue.createVNode(_component_best_gauge, {
@@ -603,7 +595,50 @@ if (uni.restoreGlobal) {
       }, null, 8, ["config"])
     ]);
   }
-  var __easycom_1 = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$5], ["__scopeId", "data-v-632cb178"], ["__file", "D:/project/SmartCar/SmartCar_App/components/runinfo/runinfo.vue"]]);
+  var __easycom_1 = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["render", _sfc_render$6], ["__scopeId", "data-v-632cb178"], ["__file", "D:/project/SmartCar/SmartCar_App/components/runinfo/runinfo.vue"]]);
+  const _sfc_main$5 = {
+    data() {
+      return {};
+    },
+    methods: {
+      acc(e) {
+        this.$emit("acc-turn");
+        uni.vibrateShort();
+      },
+      brake(e) {
+        this.$emit("brake");
+        uni.vibrateShort();
+      },
+      disBrake(e) {
+        this.$emit("disBrake");
+        uni.vibrateShort();
+      },
+      dec(e) {
+        this.$emit("dec-turn");
+        uni.vibrateShort();
+      }
+    }
+  };
+  function _sfc_render$5(_ctx, _cache, $props, $setup, $data, $options) {
+    return vue.openBlock(), vue.createElementBlock("view", null, [
+      vue.createElementVNode("view", { class: "turnControler" }, [
+        vue.createElementVNode("view", {
+          class: "acc",
+          onTouchstart: _cache[0] || (_cache[0] = (...args) => $options.acc && $options.acc(...args))
+        }, null, 32),
+        vue.createElementVNode("view", {
+          class: "stop",
+          onTouchstart: _cache[1] || (_cache[1] = (...args) => $options.brake && $options.brake(...args)),
+          onTouchend: _cache[2] || (_cache[2] = (...args) => $options.disBrake && $options.disBrake(...args))
+        }, null, 32),
+        vue.createElementVNode("view", {
+          class: "dec",
+          onTouchstart: _cache[3] || (_cache[3] = (...args) => $options.dec && $options.dec(...args))
+        }, null, 32)
+      ])
+    ]);
+  }
+  var __easycom_2 = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["render", _sfc_render$5], ["__scopeId", "data-v-55497cc0"], ["__file", "D:/project/SmartCar/SmartCar_App/components/turnControler/turnControler.vue"]]);
   const _sfc_main$4 = {
     data() {
       return {
@@ -633,7 +668,7 @@ if (uni.restoreGlobal) {
       vue.createElementVNode("view", { class: "nowGera" }, vue.toDisplayString($data.grea), 1)
     ]);
   }
-  var __easycom_2 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["render", _sfc_render$4], ["__scopeId", "data-v-5a7e7ae4"], ["__file", "D:/project/SmartCar/SmartCar_App/components/grea/grea.vue"]]);
+  var __easycom_3 = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["render", _sfc_render$4], ["__scopeId", "data-v-5a7e7ae4"], ["__file", "D:/project/SmartCar/SmartCar_App/components/grea/grea.vue"]]);
   const _sfc_main$3 = {
     data() {
       return {};
@@ -662,7 +697,7 @@ if (uni.restoreGlobal) {
       }, vue.toDisplayString($props.isBind ? `\u6539\u7ED1` : `\u53BB\u7ED1\u5B9A`), 1)
     ]);
   }
-  var __easycom_3 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$3], ["__scopeId", "data-v-9ee252f8"], ["__file", "D:/project/SmartCar/SmartCar_App/components/bind-car/bind-car.vue"]]);
+  var __easycom_4 = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["render", _sfc_render$3], ["__scopeId", "data-v-9ee252f8"], ["__file", "D:/project/SmartCar/SmartCar_App/components/bind-car/bind-car.vue"]]);
   const _sfc_main$2 = {
     data() {
       return {
@@ -780,7 +815,7 @@ if (uni.restoreGlobal) {
       ], 2)
     ]);
   }
-  var __easycom_4 = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$2], ["__scopeId", "data-v-ba61afb4"], ["__file", "D:/project/SmartCar/SmartCar_App/components/user-info/user-info.vue"]]);
+  var __easycom_5 = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["render", _sfc_render$2], ["__scopeId", "data-v-ba61afb4"], ["__file", "D:/project/SmartCar/SmartCar_App/components/user-info/user-info.vue"]]);
   const _sfc_main$1 = {
     data() {
       return {
@@ -789,8 +824,8 @@ if (uni.restoreGlobal) {
         isBind: false,
         isBrake: false,
         isConnected: false,
-        leftSpeed: 0,
-        rightSpeed: 0,
+        xSpeed: 0,
+        zSpeed: 0,
         grea: "P",
         leftSpeedPanel: {
           id: "left",
@@ -865,17 +900,37 @@ if (uni.restoreGlobal) {
     methods: {
       changeGrea(grea) {
         this.grea = grea;
-        this.leftSpeed = 0;
-        this.rightSpeed = 0;
+        this.xSpeed = 0;
+        this.zSpeed = 0;
       },
-      setSpeed(direct, speed) {
-        if (direct == "left")
-          this.leftSpeed = speed;
-        if (direct == "right")
-          this.rightSpeed = speed;
+      setSpeed(direct) {
+        if (direct == "acc") {
+          if (this.xSpeed < 20)
+            this.xSpeed++;
+        }
+        if (direct == "dec") {
+          if (this.xSpeed > 0)
+            this.xSpeed--;
+        }
+      },
+      setTurn(direct) {
+        if (direct == "acc") {
+          if (this.zSpeed < 20)
+            this.zSpeed++;
+        }
+        if (direct == "dec") {
+          if (this.zSpeed > -20)
+            this.zSpeed--;
+        }
       },
       brake(direct) {
         this.isBrake = true;
+        if (direct == "speed") {
+          this.xSpeed = 0;
+          this.zSpeed = 0;
+        } else if (direct == "turn") {
+          this.zSpeed = 0;
+        }
       },
       disBrake(direct) {
         this.isBrake = false;
@@ -944,7 +999,7 @@ if (uni.restoreGlobal) {
           }
         });
         uni.request({
-          url: `http://192.168.43.84:8088/appSta/api/setSta?leftS=${this.leftSpeed}&rightS=${this.rightSpeed}&grea=${this.grea}&id=${this.id}`,
+          url: `http://192.168.43.84:8088/appSta/api/setSta?leftS=${this.xSpeed}&rightS=${this.zSpeed}&grea=${this.grea}&id=${this.id}`,
           method: "GET"
         });
       }, 10);
@@ -953,21 +1008,25 @@ if (uni.restoreGlobal) {
   function _sfc_render$1(_ctx, _cache, $props, $setup, $data, $options) {
     const _component_speedControler = resolveEasycom(vue.resolveDynamicComponent("speedControler"), __easycom_0$1);
     const _component_runinfo = resolveEasycom(vue.resolveDynamicComponent("runinfo"), __easycom_1);
-    const _component_grea = resolveEasycom(vue.resolveDynamicComponent("grea"), __easycom_2);
-    const _component_bind_car = resolveEasycom(vue.resolveDynamicComponent("bind-car"), __easycom_3);
-    const _component_user_info = resolveEasycom(vue.resolveDynamicComponent("user-info"), __easycom_4);
+    const _component_turnControler = resolveEasycom(vue.resolveDynamicComponent("turnControler"), __easycom_2);
+    const _component_grea = resolveEasycom(vue.resolveDynamicComponent("grea"), __easycom_3);
+    const _component_bind_car = resolveEasycom(vue.resolveDynamicComponent("bind-car"), __easycom_4);
+    const _component_user_info = resolveEasycom(vue.resolveDynamicComponent("user-info"), __easycom_5);
     return vue.openBlock(), vue.createElementBlock(vue.Fragment, null, [
       vue.createElementVNode("view", { class: "content" }, [
         vue.createVNode(_component_speedControler, {
           name: "left",
-          onSpeed: _cache[0] || (_cache[0] = (speed) => {
-            $options.setSpeed(`left`, speed);
+          onAccSpeed: _cache[0] || (_cache[0] = () => {
+            $options.setSpeed(`acc`);
           }),
-          onBrake: _cache[1] || (_cache[1] = () => {
-            $options.brake(`left`);
+          onDecSpeed: _cache[1] || (_cache[1] = () => {
+            $options.setSpeed(`dec`);
           }),
-          onDisBrake: _cache[2] || (_cache[2] = () => {
-            $options.disBrake(`left`);
+          onBrake: _cache[2] || (_cache[2] = () => {
+            $options.brake(`speed`);
+          }),
+          onDisBrake: _cache[3] || (_cache[3] = () => {
+            $options.disBrake(`speed`);
           })
         }),
         vue.createVNode(_component_runinfo, {
@@ -976,16 +1035,19 @@ if (uni.restoreGlobal) {
           leftSpeedPanel: $data.leftSpeedPanel,
           rightSpeedPanel: $data.rightSpeedPanel
         }, null, 8, ["isBrake", "isConnected", "leftSpeedPanel", "rightSpeedPanel"]),
-        vue.createVNode(_component_speedControler, {
-          name: "right ",
-          onSpeed: _cache[3] || (_cache[3] = (speed) => {
-            $options.setSpeed(`right`, speed);
+        vue.createVNode(_component_turnControler, {
+          name: "right",
+          onAccTurn: _cache[4] || (_cache[4] = () => {
+            $options.setTurn(`acc`);
           }),
-          onBrake: _cache[4] || (_cache[4] = () => {
-            $options.brake(`right`);
+          onDecTurn: _cache[5] || (_cache[5] = () => {
+            $options.setTurn(`dec`);
           }),
-          onDisBrake: _cache[5] || (_cache[5] = () => {
-            $options.disBrake(`right`);
+          onBrake: _cache[6] || (_cache[6] = () => {
+            $options.brake(`turn`);
+          }),
+          onDisBrake: _cache[7] || (_cache[7] = () => {
+            $options.disBrake(`turn`);
           })
         })
       ]),

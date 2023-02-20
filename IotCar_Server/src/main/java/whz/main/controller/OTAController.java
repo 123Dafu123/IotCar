@@ -36,6 +36,24 @@ public class OTAController {
         jdbcTemplate.update(sql,args);
     }
 
+    @GetMapping("/pubNewVersion")
+    public boolean pubNewVersion(@RequestParam Map<String,String> params){
+        String sql="update ota set nowVersion=?";
+        Object[] args={params.get("newVersion")};
+        return jdbcTemplate.update(sql, args) > 0;
+    }
+
+    @GetMapping("/getNowVersion")
+    public String getNewVersion(@RequestParam Map<String,String> params){
+        Map<String,Object> ret=null;
+
+        String sql="select nowVersion from ota where cid=?";
+        Object[] args={params.get("cid")};
+        ret=jdbcTemplate.queryForMap(sql,args);
+
+        return (String) ret.get("nowVersion");
+    }
+
     @GetMapping("/checkUpdateByUid")
     public boolean checkUpdateByUidHandler(@RequestParam Map<String, String> params){
         String oldVersion=null;

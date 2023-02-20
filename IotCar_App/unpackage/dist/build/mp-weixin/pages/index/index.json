@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "智能小车",
+  "backgroundColor": "#282c35",
+  "usingComponents": {
+    "cu-progress": "../../components/cu-progress/cu-progress",
+    "wrap": "../../components/wrap/wrap",
+    "runinfo": "../../components/runinfo/runinfo"
+  }
+}

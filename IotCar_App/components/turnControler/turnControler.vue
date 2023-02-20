@@ -1,9 +1,9 @@
 <template>
 	<view>
 		<view class="turnControler">
-			<view class="acc" @touchstart="acc"></view>
+			<view class="acc" @touchstart="acc" @touchend="accEnd"></view>
 			<view class="stop" @touchstart="brake" @touchend="disBrake"></view>
-			<view class="dec" @touchstart="dec"></view>
+			<view class="dec" @touchstart="dec" @touchend="decEnd"></view>
 		</view>
 	</view>
 </template>
@@ -18,6 +18,10 @@
 				this.$emit('acc-turn')
 				uni.vibrateShort()
 			},
+			accEnd(e) {
+				this.$emit('acc-turn-end')
+				uni.vibrateShort()
+			},
 			brake(e) {
 				this.$emit('brake')
 				uni.vibrateShort()
@@ -28,6 +32,10 @@
 			},
 			dec(e) {
 				this.$emit('dec-turn')
+				uni.vibrateShort()
+			},
+			decEnd(e) {
+				this.$emit('dec-turn-end')
 				uni.vibrateShort()
 			}
 		}

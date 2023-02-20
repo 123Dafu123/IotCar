@@ -241,6 +241,10 @@ if (uni.restoreGlobal) {
         this.$emit("acc-speed");
         uni.vibrateShort();
       },
+      accEnd(e) {
+        this.$emit("acc-speed-end");
+        uni.vibrateShort();
+      },
       brake(e) {
         this.$emit("brake");
         uni.vibrateShort();
@@ -252,6 +256,10 @@ if (uni.restoreGlobal) {
       dec(e) {
         this.$emit("dec-speed");
         uni.vibrateShort();
+      },
+      decEnd(e) {
+        this.$emit("dec-speed-end");
+        uni.vibrateShort();
       }
     }
   };
@@ -259,16 +267,18 @@ if (uni.restoreGlobal) {
     return vue.openBlock(), vue.createElementBlock("view", { class: "speedControler" }, [
       vue.createElementVNode("view", {
         class: "acc",
-        onTouchstart: _cache[0] || (_cache[0] = (...args) => $options.acc && $options.acc(...args))
+        onTouchstart: _cache[0] || (_cache[0] = (...args) => $options.acc && $options.acc(...args)),
+        onTouchend: _cache[1] || (_cache[1] = (...args) => $options.accEnd && $options.accEnd(...args))
       }, null, 32),
       vue.createElementVNode("view", {
         class: "stop",
-        onTouchstart: _cache[1] || (_cache[1] = (...args) => $options.brake && $options.brake(...args)),
-        onTouchend: _cache[2] || (_cache[2] = (...args) => $options.disBrake && $options.disBrake(...args))
+        onTouchstart: _cache[2] || (_cache[2] = (...args) => $options.brake && $options.brake(...args)),
+        onTouchend: _cache[3] || (_cache[3] = (...args) => $options.disBrake && $options.disBrake(...args))
       }, null, 32),
       vue.createElementVNode("view", {
         class: "dec",
-        onTouchstart: _cache[3] || (_cache[3] = (...args) => $options.dec && $options.dec(...args))
+        onTouchstart: _cache[4] || (_cache[4] = (...args) => $options.dec && $options.dec(...args)),
+        onTouchend: _cache[5] || (_cache[5] = (...args) => $options.decEnd && $options.decEnd(...args))
       }, null, 32)
     ]);
   }
@@ -605,6 +615,10 @@ if (uni.restoreGlobal) {
         this.$emit("acc-turn");
         uni.vibrateShort();
       },
+      accEnd(e) {
+        this.$emit("acc-turn-end");
+        uni.vibrateShort();
+      },
       brake(e) {
         this.$emit("brake");
         uni.vibrateShort();
@@ -616,6 +630,10 @@ if (uni.restoreGlobal) {
       dec(e) {
         this.$emit("dec-turn");
         uni.vibrateShort();
+      },
+      decEnd(e) {
+        this.$emit("dec-turn-end");
+        uni.vibrateShort();
       }
     }
   };
@@ -624,16 +642,18 @@ if (uni.restoreGlobal) {
       vue.createElementVNode("view", { class: "turnControler" }, [
         vue.createElementVNode("view", {
           class: "acc",
-          onTouchstart: _cache[0] || (_cache[0] = (...args) => $options.acc && $options.acc(...args))
+          onTouchstart: _cache[0] || (_cache[0] = (...args) => $options.acc && $options.acc(...args)),
+          onTouchend: _cache[1] || (_cache[1] = (...args) => $options.accEnd && $options.accEnd(...args))
         }, null, 32),
         vue.createElementVNode("view", {
           class: "stop",
-          onTouchstart: _cache[1] || (_cache[1] = (...args) => $options.brake && $options.brake(...args)),
-          onTouchend: _cache[2] || (_cache[2] = (...args) => $options.disBrake && $options.disBrake(...args))
+          onTouchstart: _cache[2] || (_cache[2] = (...args) => $options.brake && $options.brake(...args)),
+          onTouchend: _cache[3] || (_cache[3] = (...args) => $options.disBrake && $options.disBrake(...args))
         }, null, 32),
         vue.createElementVNode("view", {
           class: "dec",
-          onTouchstart: _cache[3] || (_cache[3] = (...args) => $options.dec && $options.dec(...args))
+          onTouchstart: _cache[4] || (_cache[4] = (...args) => $options.dec && $options.dec(...args)),
+          onTouchend: _cache[5] || (_cache[5] = (...args) => $options.decEnd && $options.decEnd(...args))
         }, null, 32)
       ])
     ]);
@@ -819,6 +839,10 @@ if (uni.restoreGlobal) {
   const _sfc_main$1 = {
     data() {
       return {
+        accSpeedTime: 0,
+        decSpeedTime: 0,
+        accTurnTime: 0,
+        decTunrTime: 0,
         id: "",
         bindId: "",
         isBind: false,
@@ -905,22 +929,42 @@ if (uni.restoreGlobal) {
       },
       setSpeed(direct) {
         if (direct == "acc") {
-          if (this.xSpeed < 20)
-            this.xSpeed++;
+          this.accSpeedTime = setInterval(() => {
+            if (this.xSpeed < 20)
+              this.xSpeed++;
+          }, 400);
         }
         if (direct == "dec") {
-          if (this.xSpeed > 0)
-            this.xSpeed--;
+          this.decSpeedTime = setInterval(() => {
+            if (this.xSpeed > 0)
+              this.xSpeed--;
+          }, 400);
+        }
+        if (direct == "acc-end") {
+          clearInterval(this.accSpeedTime);
+        }
+        if (direct == "dec-end") {
+          clearInterval(this.decSpeedTime);
         }
       },
       setTurn(direct) {
         if (direct == "acc") {
-          if (this.zSpeed < 20)
-            this.zSpeed++;
+          this.accTurnTime = setInterval(() => {
+            if (this.zSpeed < 10)
+              this.zSpeed++;
+          }, 200);
         }
         if (direct == "dec") {
-          if (this.zSpeed > -20)
-            this.zSpeed--;
+          this.decTunrTime = setInterval(() => {
+            if (this.zSpeed > -10)
+              this.zSpeed--;
+          }, 200);
+        }
+        if (direct == "acc-end") {
+          clearInterval(this.accTurnTime);
+        }
+        if (direct == "dec-end") {
+          clearInterval(this.decTunrTime);
         }
       },
       brake(direct) {
@@ -1027,6 +1071,12 @@ if (uni.restoreGlobal) {
           }),
           onDisBrake: _cache[3] || (_cache[3] = () => {
             $options.disBrake(`speed`);
+          }),
+          onAccSpeedEnd: _cache[4] || (_cache[4] = () => {
+            $options.setSpeed(`acc-end`);
+          }),
+          onDecSpeedEnd: _cache[5] || (_cache[5] = () => {
+            $options.setSpeed(`dec-end`);
           })
         }),
         vue.createVNode(_component_runinfo, {
@@ -1037,17 +1087,23 @@ if (uni.restoreGlobal) {
         }, null, 8, ["isBrake", "isConnected", "leftSpeedPanel", "rightSpeedPanel"]),
         vue.createVNode(_component_turnControler, {
           name: "right",
-          onAccTurn: _cache[4] || (_cache[4] = () => {
+          onAccTurn: _cache[6] || (_cache[6] = () => {
             $options.setTurn(`acc`);
           }),
-          onDecTurn: _cache[5] || (_cache[5] = () => {
+          onDecTurn: _cache[7] || (_cache[7] = () => {
             $options.setTurn(`dec`);
           }),
-          onBrake: _cache[6] || (_cache[6] = () => {
+          onBrake: _cache[8] || (_cache[8] = () => {
             $options.brake(`turn`);
           }),
-          onDisBrake: _cache[7] || (_cache[7] = () => {
+          onDisBrake: _cache[9] || (_cache[9] = () => {
             $options.disBrake(`turn`);
+          }),
+          onAccTurnEnd: _cache[10] || (_cache[10] = () => {
+            $options.setTurn(`acc-end`);
+          }),
+          onDecTurnEnd: _cache[11] || (_cache[11] = () => {
+            $options.setTurn(`dec-end`);
           })
         })
       ]),

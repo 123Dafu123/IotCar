@@ -1,8 +1,8 @@
 <template>
 	<view class="speedControler">
-		<view class="acc" @touchstart="acc"></view>
+		<view class="acc" @touchstart="acc" @touchend="accEnd"></view>
 		<view class="stop" @touchstart="brake" @touchend="disBrake"></view>
-		<view class="dec" @touchstart="dec"></view>
+		<view class="dec" @touchstart="dec" @touchend="decEnd"></view>
 	</view>
 </template>
 
@@ -16,6 +16,10 @@
 				this.$emit('acc-speed')
 				uni.vibrateShort()
 			},
+			accEnd(e) {
+				this.$emit('acc-speed-end')
+				uni.vibrateShort()
+			},
 			brake(e) {
 				this.$emit('brake')
 				uni.vibrateShort()
@@ -26,6 +30,10 @@
 			},
 			dec(e) {
 				this.$emit('dec-speed')
+				uni.vibrateShort()
+			},
+			decEnd(e) {
+				this.$emit('dec-speed-end')
 				uni.vibrateShort()
 			}
 		}

@@ -1,13 +1,15 @@
 <template>
 	<view class="content">
 		<speedControler name="left" @acc-speed="()=>{setSpeed(`acc`)}" @dec-speed="()=>{setSpeed(`dec`)}"
-			@brake="()=>{brake(`speed`)}" @disBrake="()=>{disBrake(`speed`)}">
+			@brake="()=>{brake(`speed`)}" @disBrake="()=>{disBrake(`speed`)}" @acc-speed-end="()=>{setSpeed(`acc-end`)}"
+			@dec-speed-end="()=>{setSpeed(`dec-end`)}">
 		</speedControler>
 		<runinfo :isBrake="isBrake" :isConnected="isConnected" :leftSpeedPanel="leftSpeedPanel"
 			:rightSpeedPanel="rightSpeedPanel">
 		</runinfo>
 		<turnControler name="right" @acc-turn="()=>{setTurn(`acc`)}" @dec-turn="()=>{setTurn(`dec`)}"
-			@brake=" ()=>{brake(`turn`)}" @disBrake="()=>{disBrake(`turn`)}">
+			@brake=" ()=>{brake(`turn`)}" @disBrake="()=>{disBrake(`turn`)}" @acc-turn-end="()=>{setTurn(`acc-end`)}"
+			@dec-turn-end="()=>{setTurn(`dec-end`)}">
 		</turnControler>
 	</view>
 	<grea class=" bottom" @changeGrea="changeGrea"></grea>
@@ -19,6 +21,10 @@
 	export default {
 		data() {
 			return {
+				accSpeedTime: 0,
+				decSpeedTime: 0,
+				accTurnTime: 0,
+				decTunrTime: 0,
 				id: "",
 				bindId: "",
 				isBind: false,
@@ -105,22 +111,43 @@
 			},
 			setSpeed(direct) {
 				if (direct == 'acc') {
-					if (this.xSpeed < 20)
-						this.xSpeed++;
+					this.accSpeedTime = setInterval(() => {
+						if (this.xSpeed < 20)
+							this.xSpeed++;
+					}, 400)
 				}
 				if (direct == 'dec') {
-					if (this.xSpeed > 0)
-						this.xSpeed--;
+					this.decSpeedTime = setInterval(() => {
+						if (this.xSpeed > 0)
+							this.xSpeed--;
+					}, 400)
 				}
+				if (direct == 'acc-end') {
+					clearInterval(this.accSpeedTime)
+				}
+				if (direct == 'dec-end') {
+					clearInterval(this.decSpeedTime)
+				}
+
 			},
 			setTurn(direct) {
 				if (direct == 'acc') {
-					if (this.zSpeed < 20)
-						this.zSpeed++;
+					this.accTurnTime = setInterval(() => {
+						if (this.zSpeed < 10)
+							this.zSpeed++;
+					}, 200)
 				}
 				if (direct == 'dec') {
-					if (this.zSpeed > -20)
-						this.zSpeed--;
+					this.decTunrTime = setInterval(() => {
+						if (this.zSpeed > -10)
+							this.zSpeed--;
+					}, 200)
+				}
+				if (direct == 'acc-end') {
+					clearInterval(this.accTurnTime)
+				}
+				if (direct == 'dec-end') {
+					clearInterval(this.decTunrTime)
 				}
 			},
 			brake(direct) {

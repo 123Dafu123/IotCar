@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "智能小车",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "pageOrientation": "landscape"
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}

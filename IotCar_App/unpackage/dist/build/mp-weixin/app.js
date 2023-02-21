@@ -1,0 +1,1 @@
+"use strict";Object.defineProperty(exports,"__esModule",{value:!0}),exports[Symbol.toStringTag]="Module";var e=require("./common/vendor.js");Math;const r={};var t=e._export_sfc(r,[["render",function(e,r){return{}}]]);function o(){return{app:e.createSSRApp(t)}}o().app.mount("#app"),exports.createApp=o;

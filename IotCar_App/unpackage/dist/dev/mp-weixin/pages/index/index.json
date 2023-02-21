@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "智能小车",
+  "backgroundColor": "#282c35",
+  "usingComponents": {
+    "wrap": "../../components/wrap/wrap",
+    "runinfo": "../../components/runinfo/runinfo"
+  }
+}

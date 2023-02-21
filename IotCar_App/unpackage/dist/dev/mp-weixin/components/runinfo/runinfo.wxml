@@ -1,1 +1,0 @@
-<view class="runinfo"><text>左轮速度:<text class="sta">{{a}}</text></text><text>右轮速度:<text class="sta">{{b}}</text></text><text>挡位:<text class="sta">{{c}}</text></text><text>制动状态:<text class="sta">{{d}}</text></text><text>网络状态:<text class="sta">{{e}}</text></text></view>

@@ -1,4 +1,4 @@
-本系统是由springboot构成后端，uniapp构成前端手机app，rt-thread+stm32构成前端嵌入式系统，mssql做后台数据库的物联网系统。
+本系统是由springboot构成后端，uniapp构成前端手机app，rt-thread+stm32构成嵌入式系统，mssql做后台数据库的物联网系统。
 
 用户可用手机app控制小车，并可实现多用户绑定、控制不同小车。
 
